@@ -2,15 +2,15 @@
 
 require_once 'vendor/autoload.php';
 
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Stopwatch\Stopwatch;
 
-$array = array(
-    'foo' => 'bar',
-    'bar' => array('foo' => 'bar', 'bar' => 'baz'),
-);
+$stopwatch = new Stopwatch();
+// Start event named 'eventName'
+$stopwatch->start('eventName');
+// ... some code goes here
+sleep(1);
+$event = $stopwatch->stop('eventName');
 
-$yaml = Yaml::dump($array);
-
-file_put_contents('ymlfile/file.yml', $yaml);
-
-$value = Yaml::parse(file_get_contents('ymlfile/file.yml'));
+$a = $event->getPeriods('eventName');
+echo '<pre>';
+print_r($a);
