@@ -2,19 +2,9 @@
 
 require_once 'vendor/autoload.php';
 
-use Symfony\Component\Finder\Finder;
+use Symfony\Component\CssSelector\CssSelectorConverter;
 
-$finder = new Finder();
-$finder->files()->in(__DIR__);
+$converter = new CssSelectorConverter();
+var_dump($converter->toXPath('div.item > h4 > a'));
 
-foreach ($finder as $file) {
-    // Dump the absolute path
-    var_dump($file->getRealPath());
-
-    // Dump the relative path to the file, omitting the filename
-    var_dump($file->getRelativePath());
-
-    // Dump the relative path to the file
-    var_dump($file->getRelativePathname());
-}
 
